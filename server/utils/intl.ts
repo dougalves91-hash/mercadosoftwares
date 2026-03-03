@@ -160,7 +160,6 @@ export function getIntlContext(event?: H3Event): IntlContext {
 
   const pathLang = detectLanguageFromPath(event)
   const acceptLang = detectLanguageFromAcceptLanguage(getRequestHeader(event as any, 'accept-language'))
-  const pathLang = detectLanguageFromPath(event)
   const headerCountry = readCountryCode(event)
   const inferredHostCountry = host.endsWith('.com.br') || host.includes('.com.br:') ? 'BR' : ''
   const country = cookieCountry || headerCountry || (cookieCurrency ? '' : inferredHostCountry)
