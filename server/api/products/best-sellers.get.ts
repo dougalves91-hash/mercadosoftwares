@@ -130,7 +130,12 @@ export default defineEventHandler(async (event) => {
       const effectivePrice = effective.amount
       const effectiveOldPrice = effective.oldAmount
 
-      const translatedName = autoTranslateText(p.nome, { lang }) || p.nome
+      let translatedName = autoTranslateText(p.nome, { lang }) || p.nome
+      if (p.slug === 'microsoft-office-365-vitalicio-5-licencas-pc-mac-android-ou-ios-1-tb-one-drive') {
+        if (lang === 'en') translatedName = 'Original Office 365 License for PC and Mac – Instant Delivery'
+        else if (lang === 'es') translatedName = 'Licencia original de Office 365 para PC y Mac – Entrega inmediata'
+        else translatedName = 'Licença Office 365 Original para PC e Mac – Entrega Instantânea'
+      }
       const translatedDescription = autoTranslateText(p.descricao, { lang }) || p.descricao
       const translatedTutorialTitle = autoTranslateText(p.tutorialTitulo, { lang }) || p.tutorialTitulo
       const translatedTutorialSubtitle = autoTranslateText(p.tutorialSubtitulo, { lang }) || p.tutorialSubtitulo
