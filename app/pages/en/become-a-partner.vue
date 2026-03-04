@@ -11,12 +11,12 @@
               Earn up to 30% commission promoting digital software solutions worldwide.
             </p>
             <div class="mt-10 flex items-center justify-center">
-              <a
-                href="mailto:partners@casadosoftware.com"
+              <NuxtLink
+                to="/partner-apply"
                 class="inline-flex items-center justify-center rounded-xl bg-gray-900 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
               >
                 Become a Partner
-              </a>
+              </NuxtLink>
             </div>
           </div>
         </div>
@@ -191,12 +191,12 @@
               Apply now and get your affiliate link to start promoting digital software worldwide.
             </p>
             <div class="mt-10 flex items-center justify-center">
-              <a
-                href="mailto:partners@casadosoftware.com"
+              <NuxtLink
+                to="/partner-apply"
                 class="inline-flex items-center justify-center rounded-xl bg-white px-6 py-3 text-sm font-semibold text-gray-900 shadow-sm transition hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-900"
               >
                 Apply Now
-              </a>
+              </NuxtLink>
             </div>
           </div>
         </div>

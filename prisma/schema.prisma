@@ -300,3 +300,17 @@ model AffiliateCommission {
 
   @@index([affiliateId])
 }
+
+model PartnerApplication {
+  id               Int      @id @default(autoincrement())
+  name             String
+  email            String
+  website          String?
+  social           String?
+  country          String
+  monthlyTraffic   String?
+  promotionPlan    String?
+  createdAt        DateTime @default(now())
+
+  @@index([email])
+}
