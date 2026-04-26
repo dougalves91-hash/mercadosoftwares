@@ -3,7 +3,7 @@
   "type": "module",
   "private": true,
   "engines": {
-    "node": ">=22.x"
+    "node": "22.x"
   },
   "scripts": {
     "build": "prisma generate && nuxt build",
@@ -12,7 +12,7 @@
     "start": "prisma migrate deploy && node .output/server/index.mjs",
     "start:prod": "prisma migrate deploy && node .output/server/index.mjs",
     "preview": "nuxt preview",
-    "postinstall": "prisma generate && nuxt prepare"
+    "postinstall": "prisma generate"
   },
   "prisma": {
     "seed": "node prisma/seed.mjs"
