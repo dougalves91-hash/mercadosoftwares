@@ -6,7 +6,7 @@
     "node": "22.x"
   },
   "scripts": {
-    "build": "prisma generate && prisma migrate deploy && prisma db seed && nuxt build",
+    "build": "prisma generate && nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "start": "node .output/server/index.mjs",
