@@ -41,6 +41,10 @@
           🔄 Importar WooCommerce
         </NuxtLink>
 
+        <NuxtLink to="/admin/importar-produtos-csv" class="menu">
+          📥 Importar Produtos CSV
+        </NuxtLink>
+
         <NuxtLink to="/admin/cupons" class="menu">
           🏷️ Cupons
         </NuxtLink>
