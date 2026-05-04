@@ -586,11 +586,7 @@ watch(
   { immediate: true }
 )
 
-const mainMenuBase = [
-  { label: 'Windows', slug: 'windows', fallbackTo: '/categorias' },
-  { label: 'Office', slug: 'office', fallbackTo: '/categorias' },
-  { label: 'Windows Server', slug: 'windows-server', fallbackTo: '/categorias' },
-  { label: 'Autodesk', slug: 'autodesk', fallbackTo: '/categorias' },
+const mainMenuStaticLinks = [
   { label: 'Blog', to: '/blog' },
   { label: 'Contato', to: '/quem-somos' }
 ] as const
@@ -651,20 +647,19 @@ const affiliateMenuTo = computed(() => {
   return '/pt/programa-afiliados'
 })
 
-const categoriasSet = computed(() => {
-  return new Set(categorias.value.map((c) => String(c.slug || '').trim()).filter(Boolean))
-})
-
 const mainMenu = computed(() => {
-  const base = mainMenuBase.map((it) => {
-    if ('to' in it) return it
-    const slug = String(it.slug || '').trim()
-    if (!slug) return { label: it.label, to: it.fallbackTo }
-    if (categoriasSet.value.has(slug)) return { label: it.label, to: `/categoria/${slug}` }
-    return { label: it.label, to: it.fallbackTo }
-  })
+  const categoryLinks = categorias.value
+    .map((categoria) => {
+      const label = String(categoria.nome || '').trim()
+      const slug = String(categoria.slug || '').trim()
+      if (!label || !slug) return null
+      return { label, to: `/categoria/${slug}` }
+    })
+    .filter((item): item is { label: string; to: string } => Boolean(item))
 
-  return [...base, { label: affiliateMenuLabel.value, to: affiliateMenuTo.value }]
+  const base = categoryLinks.length ? categoryLinks : [{ label: 'Categorias', to: '/categorias' }]
+
+  return [...base, ...mainMenuStaticLinks, { label: affiliateMenuLabel.value, to: affiliateMenuTo.value }]
 })
 
 const cartCount = computed(() => (cart.value || []).length)
