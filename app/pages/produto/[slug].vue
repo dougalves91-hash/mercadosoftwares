@@ -212,8 +212,8 @@
 
 <script setup lang="ts">
 import { useIntlContext } from '#imports'
-import DOMPurify from 'isomorphic-dompurify'
 import { trackViewItem } from '~/services/analytics'
+import { sanitizeHtml } from '~/utils/sanitizeHtml'
 
 definePageMeta({ ssr: true })
 
@@ -492,7 +492,7 @@ const seoDescription = computed(() => {
   const raw = rawShort || rawLong
   if (!raw) return ''
 
-  const textOnly = DOMPurify.sanitize(raw, { ALLOWED_TAGS: [], ALLOWED_ATTR: [] })
+  const textOnly = String(raw).replace(/<[^>]*>/g, '')
     .replace(/\s+/g, ' ')
     .trim()
 
@@ -679,9 +679,7 @@ const safeDescriptionHtml = computed(() => {
     return raw
   })()
 
-  return DOMPurify.sanitize(normalized, {
-    USE_PROFILES: { html: true }
-  })
+  return sanitizeHtml(normalized)
 })
 
 function onImageError(e: Event) {

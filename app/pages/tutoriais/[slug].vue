@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import DOMPurify from 'dompurify'
+import { sanitizeHtml } from '~/utils/sanitizeHtml'
 
 definePageMeta({ ssr: false })
 
@@ -185,11 +185,7 @@ const tutorialHtml = computed(() => {
   const fallback = `<p class="text-gray-500">${escapeHtml(t.value.noContent)}</p>`
   const content = html || fallback
 
-  return DOMPurify.sanitize(content, {
-    USE_PROFILES: { html: true },
-    ADD_TAGS: ['iframe'],
-    ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'referrerpolicy']
-  })
+  return sanitizeHtml(content)
 })
 </script>
 

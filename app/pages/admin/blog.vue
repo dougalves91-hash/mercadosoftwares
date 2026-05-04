@@ -154,13 +154,13 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import DOMPurify from 'isomorphic-dompurify'
 import { EditorContent, useEditor } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
 import Image from '@tiptap/extension-image'
 import Link from '@tiptap/extension-link'
 import Underline from '@tiptap/extension-underline'
 import Placeholder from '@tiptap/extension-placeholder'
+import { sanitizeHtml } from '~/utils/sanitizeHtml'
 
 definePageMeta({ layout: 'admin' })
 
@@ -219,10 +219,7 @@ const editor = process.client
       content: '',
       editorProps: {
         transformPastedHTML(html) {
-          return DOMPurify.sanitize(html, {
-            USE_PROFILES: { html: true },
-            FORBID_ATTR: ['style', 'class', 'id', 'onerror', 'onclick', 'onload']
-          })
+          return sanitizeHtml(html)
         }
       },
       onUpdate({ editor }) {

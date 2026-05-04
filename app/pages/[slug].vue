@@ -19,8 +19,8 @@
 </template>
 
 <script setup lang="ts">
-import DOMPurify from 'isomorphic-dompurify'
 import { createError } from 'h3'
+import { sanitizeHtml } from '~/utils/sanitizeHtml'
 
 const route = useRoute()
 const slug = computed(() => String(route.params.slug || ''))
@@ -47,7 +47,7 @@ const postHtml = computed(() => String(post.value?.html || ''))
 const safePostHtml = computed(() => {
   const raw = postHtml.value
   if (!raw) return ''
-  return DOMPurify.sanitize(raw, { USE_PROFILES: { html: true } })
+  return sanitizeHtml(raw)
 })
 
 const { siteName } = useSiteBranding()

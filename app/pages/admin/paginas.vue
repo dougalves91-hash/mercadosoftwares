@@ -149,7 +149,7 @@
 </template>
 
 <script setup lang="ts">
-import DOMPurify from 'isomorphic-dompurify'
+import { sanitizeHtml } from '~/utils/sanitizeHtml'
 
 definePageMeta({ layout: 'admin' })
 
@@ -236,7 +236,7 @@ async function openEdit(id: string) {
 const previewHtml = computed(() => {
   const raw = String(formConteudo.value || '')
   if (!raw.trim()) return ''
-  return DOMPurify.sanitize(raw)
+  return sanitizeHtml(raw)
 })
 
 function closeModal() {

@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import DOMPurify from 'isomorphic-dompurify'
+import { sanitizeHtml } from '~/utils/sanitizeHtml'
 
 const route = useRoute()
 const slug = computed(() => String(route.params.slug || ''))
@@ -75,7 +75,7 @@ const looksLikeHtml = computed(() => {
 const conteudoHtml = computed(() => {
   if (!looksLikeHtml.value) return ''
   const raw = String(pagina.value?.conteudo || '')
-  return DOMPurify.sanitize(raw)
+  return sanitizeHtml(raw)
 })
 
 const { siteName } = useSiteBranding()
